@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import argparse
-import sys
 from pathlib import Path
 
-from primify import __version__
-from primify.base import PrimeImage
 
-__author__ = "Levi Borodenko"
-__copyright__ = "Levi Borodenko"
-__license__ = "mit"
+from primify.base import PrimeImage
 
 
 def parse_args(args):
@@ -59,7 +54,7 @@ def parse_args(args):
     return parser.parse_args(args)
 
 
-def main(args):
+def run(args):
     """Main entry point allowing external calls
 
     Args:
@@ -74,12 +69,6 @@ def main(args):
     )
 
     a.get_prime()
-
-
-def run():
-    """Entry point for console_scripts"""
-    main(sys.argv[1:])
-
 
 if __name__ == "__main__":
     run()
