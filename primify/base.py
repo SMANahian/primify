@@ -156,6 +156,7 @@ class PrimeImage:
                 quantized_image, self.max_digits
             )
 
+        with console.status("Searching for a similar looking prime."):
             # now we read the image as a number
             image_number = PrimeImage.quantized_image_to_number(resized_image)
 
@@ -163,7 +164,9 @@ class PrimeImage:
                 f"Converted image into a number with {int(math.log10(image_number.value))} digits."
             )
 
-        with console.status("Searching for a similar looking prime."):
+            console.log("The number that looks like the image: (Note: this is not a prime.)")
+            console.print(str(image_number), style="white on #555555")
+            console.log("Finding the next prime number")
 
             # initiate helping prime finder. Much faster than just using nextprime()
             n_processes = max(
@@ -181,7 +184,7 @@ class PrimeImage:
             # turn result back into a formated number
             result = ImageNumber(next_prime, image_number.image_width)
 
-            console.print(str(result), style="black on white")
+            console.print(str(result))
             self.output_file_path.write_text(str(result))
             console.log(f"Saved prime to {self.output_file_path}!")
             return result
